@@ -1,0 +1,5 @@
+prvecho "Set hostname to zeriarm"
+echo "zeriarm" > "/etc/hostname"
+hostname -b "zeriarm"
+
+systemctl restart avahi-daemon.service

@@ -1,0 +1,10 @@
+__LOGIN_STATUS="$(cat /etc/ssh/sshd_config | grep '^PermitRootLogin')"
+
+if [ ! "${__LOGIN_STATUS}" = "PermitRootLogin no" ]; then
+    prvecho "Disable SSH root login."
+    sed 's/PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
+else
+    prvecho "SSH root login already disabled."
+fi
+prvecho "Restarting sshd service."
+systemctl restart sshd.service

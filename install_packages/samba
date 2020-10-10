@@ -1,0 +1,18 @@
+if [ -f "/etc/samba/smb.conf" ]; then
+    prvecho "Backup current smb.conf to smb.conf.$(date +"%Y%m%d").origin"
+    mv -f "/etc/samba/smb.conf" "/etc/samba/smb.conf.$(date +"%Y%m%d").origin"
+fi
+
+prvecho "Symlink smb.conf"
+ln -s "${RESOURCE_DIR}/etc/samba/smb.conf" "/etc/samba/smb.conf"
+
+prvecho "Stop and mask nmbd sevice"
+systemctl stop nmbd.service
+systemctl mask nmbd.service
+
+prvecho "Stop and mask samba-ad-dc.service"
+systemctl stop samba-ad-dc.service
+systemctl mask samba-ad-dc.service
+
+prvecho "Restarting smbd service"
+systemctl restart smbd.service

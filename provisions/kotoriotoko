@@ -1,0 +1,8 @@
+if [ ! -e "${ROOT_DIR}/kotoriotoko" ]; then
+    git clone "https://github.com/ShellShoccar-jpn/kotoriotoko" "${ROOT_DIR}/kotoriotoko"
+    ln -s "${SECURE_DIR}/kotoriotoko/CONFIG/COMMON.SHLIB" "${ROOT_DIR}/kotoriotoko/CONFIG/COMMON.SHLIB"
+    "${ROOT_DIR}/kotoriotoko/BIN/tweet.sh" "Provisioning Done. $(date +"%Y-%m-%d %H:%M:%S")"
+    prvecho "kotoriotoko provisioned."
+else
+    prvecho "kotoriotoko already exists."
+fi

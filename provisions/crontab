@@ -1,0 +1,11 @@
+prvecho "Installing crontab."
+
+crontab - << EOS
+*/15 * * * * "${SHELLS_DIR}/tweet_temp.sh"
+*/5 * * * * "${SHELLS_DIR}/junk_file_clean.sh"
+* * * * * "${SHELLS_DIR}/weight_record/run.sh"
+0 0 1 * * "${SHELLS_DIR}/btrfs_maintenance.sh"
+0 0 * * 0 "${SHELLS_DIR}"/image_backup.sh"
+@reboot sleep 60; "${SHELLS_DIR}/hdd_non_sleep.sh"
+@reboot sleep 60; "${SHELLS_DIR}/boot.sh"
+EOS

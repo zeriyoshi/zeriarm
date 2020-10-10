@@ -1,0 +1,8 @@
+__TIMEZONE="$(cat "/etc/timezone")"
+
+if [ ! "${__TIMEZONE}" = "Asia/Tokyo" ]; then
+    prvecho "Set timezone to Asia/Tokyo."
+    timedatectl set-timezone Asia/Tokyo
+else
+    prvecho "Timezone already set Asia/Tokyo."
+fi

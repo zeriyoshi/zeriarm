@@ -1,0 +1,6 @@
+[submodule "shells/weight_record"]
+	path = shells/weight_record
+	url = git@github.com:zeriyoshi/weight_record.git
+[submodule "secure"]
+	path = secure
+	url = git@github.com:zeriyoshi/zeriarm-secure.git

@@ -1,0 +1,9 @@
+if [ "$(cat "/etc/fstab" | grep "LABEL=Storage")" = "" ]; then
+    echo "LABEL=Storage /storage btrfs noatime,autodefrag,compress-force=lzo,space_cache" >> "/etc/fstab"
+    prvecho "fstab provisioned."
+else
+    prvecho "Already provisioned."
+fi
+
+prvecho "Remounting all fstab entries."
+mount -a
