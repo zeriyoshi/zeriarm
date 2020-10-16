@@ -10,4 +10,4 @@ for DEVICE in $(find "/dev" -name "sd*");do
 ";
 done
 
-echo -e "CPU:${CPU_TEMP}\nHDDs:\n${HDD_TEMPS}\n$(date +"%Y-%m-%d %H:%M:%S")" | "${TWEET_BIN}"
+printf "CPU:${CPU_TEMP}\nHDDs:\n${HDD_TEMPS}\n$(date +"%Y-%m-%d %H:%M:%S")" | "${TWEET_BIN}"
