@@ -4,4 +4,4 @@ TWEET_BIN="${SCRIPT_DIR}/../kotoriotoko/BIN/tweet.sh"
 TWEET_AT="@zeriyoshi"
 
 find "/dev" -name 'sd*' | xargs hdparm -S 0
-"${TWEET_BIN}" "[hdd_non_sleep] set non-sleep mode successfully. ${TWEET_AT}"
+"${TWEET_BIN}" "[hdd_non_sleep] set non-sleep mode successfully. $(date +"%Y-%m-%d %H:%M:%S") ${TWEET_AT}"
