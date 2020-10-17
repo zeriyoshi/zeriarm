@@ -23,15 +23,18 @@ fi
 
 if [ ! -f "/home/${__USER}/.ssh/id_rsa" ]; then
     if [ -f "/home/${__USER}/.ssh/id_rsa.pub" ]; then
-        prvecho "broken SSH key detected, removing. (/home/${__USER}/.ssh/id_rsa.pub)"
+        prvecho "broken SSH public key detected, removing. (/home/${__USER}/.ssh/id_rsa.pub)"
         rm "/home/${__USER}/.ssh/id_rsa.pub"
     fi
+    prvecho "copying SSH keypair."
     cp "${SECURE_DIR}/home/${__USER}/.ssh/id_rsa" "/home/${__USER}/.ssh/id_rsa"
     chown "${__USER}:${__USER}" "/home/${__USER}/.ssh/id_rsa"
     chmod 600 "/home/${__USER}/.ssh/id_rsa"
     cp "${SECURE_DIR}/home/${__USER}/.ssh/id_rsa.pub" "/home/${__USER}/.ssh/id_rsa.pub"
     chown "${__USER}:${__USER}" "/home/${__USER}/.ssh/id_rsa.pub"
     chmod 600 "/home/${__USER}/.ssh/id_rsa.pub"
+else
+    prvecho "SSH keypair exists, skipping."
 fi
 
 if [ ! -f "/home/${__USER}/.ssh/authorized_keys" ]; then
