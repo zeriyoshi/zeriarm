@@ -1,0 +1,21 @@
+nmcli connection show | awk 'NR>1{print $1}' | xargs -ICONNECTION nmcli connection delete id "CONNECTION"
+nmcli connection add \
+    connection.id "LAN" \
+    connection.type 802-3-ethernet \
+    connection.interface-name eth0 \
+    connection.autoconnect yes \
+    ipv4.method manual \
+    ipv4.addresses 192.168.1.2/24 \
+    ipv4.dns 8.8.8.8 \
+    ipv4.never-default yes \
+    ipv6.method auto
+nmcli connection add \
+    connection.id "PPPoE" \
+    connection.type pppoe \
+    connection.interface-name ppp1 \
+    connection.autoconnect yes \
+    ipv4.method auto \
+    ipv6.method ignore \
+    pppoe.parent eth0 \
+    pppoe.username "$(cat "${SECURE_DIR}/pppoe/username")" \
+    pppoe.password "$(cat "${SECURE_DIR}/pppoe/password")"
