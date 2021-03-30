@@ -15,8 +15,6 @@ btrfs filesystem defragment -r -v "${TARGET_MOUNT_POINT}"
 
 sleep 10
 
-"${TWEET_BIN}" "[btrfs_maintenance] begin scrub.
-
-status:
-$(btrfs scrub status "${TARGET_MOUNT_POINT}")"
-btrfs scrub start "${TARGET_MOUNT_POINT}"
+"${TWEET_BIN}" "[btrfs_maintenance] begin scrub. $(date +"%Y-%m-%d %H:%M:%S") ${TWEET_AT}"
+btrfs scrub start -B "${TARGET_MOUNT_POINT}"
+"${TWEET_BIN}" "[btrfs_maintenance] complete scrub. $(date +"%Y-%m-%d %H:%M:%S") ${TWEET_AT}"
