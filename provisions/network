@@ -18,4 +18,6 @@ nmcli connection add \
     ipv6.method ignore \
     pppoe.parent eth0 \
     pppoe.username "$(cat "${SECURE_DIR}/pppoe/username")" \
-    pppoe.password "$(cat "${SECURE_DIR}/pppoe/password")"
+    pppoe.password "$(cat "${SECURE_DIR}/pppoe/password")" \
+    ppp.mru 1454 \
+    ppp.mtu 1454
